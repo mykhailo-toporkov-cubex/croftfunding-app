@@ -3,7 +3,7 @@ import { css } from "@mui/material";
 
 export const Container = styled.section`
   width: 70rem;
-  height: 45rem;
+  height: 30rem;
   padding: 0.4rem;
   overflow: hidden;
   background-color: #35baf6;
@@ -12,14 +12,17 @@ export const Container = styled.section`
 export const List = styled.ul`
   width: 100%;
   height: 100%;
-  padding-right: 0.3rem;
   display: grid;
-  gap: 0.3rem;
+  gap: 1rem;
   overflow: auto;
   background: transparent;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-export const ItemContainer = styled.li<{isBorder: boolean}>`
+export const ItemContainer = styled.li<{ isBorder: boolean; inView: boolean; }>`
   width: 100%;
   height: 7rem;
   padding: 0.6rem;
@@ -33,12 +36,19 @@ export const ItemContainer = styled.li<{isBorder: boolean}>`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 2fr;
   column-gap: 1rem;
+  transition: all 500ms;
 
   ${({ isBorder }) =>
-      isBorder &&
-      css`
-        border: 0.1rem solid black;
-      `};
+    isBorder &&
+    css`
+      border: 0.1rem solid black;
+    `};
+
+    ${({ inView }) =>
+    !inView &&
+    css`
+      opacity: 0;
+    `};
 `;
 
 export const Title = styled.h1`

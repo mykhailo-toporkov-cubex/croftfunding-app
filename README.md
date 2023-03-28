@@ -1,1 +1,2 @@
-# donators
+# The croftfunding application
+
